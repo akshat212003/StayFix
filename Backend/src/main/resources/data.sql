@@ -1,0 +1,1 @@
+-- Seed data is automatically handled by com.stayfix.config.DataInitializer on startup.
