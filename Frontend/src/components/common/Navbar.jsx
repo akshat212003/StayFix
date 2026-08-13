@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import { LogOut, Wrench, Sun, Moon, Bell } from 'lucide-react';
+import { LogOut, Sun, Moon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
@@ -36,17 +36,21 @@ export const Navbar = () => {
       className="navbar sticky top-0 z-40 px-5 py-3 flex items-center justify-between"
       style={{ boxShadow: 'var(--shadow-sm)' }}
     >
-      {/* Logo */}
-      <Link to="/" className="flex items-center gap-3 group">
-        <div className="w-9 h-9 rounded-xl btn-primary flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-          <Wrench className="w-4.5 h-4.5 text-white" style={{ width: '18px', height: '18px' }} />
-        </div>
-        <div>
-          <div className="text-lg font-extrabold tracking-tight gradient-text leading-none">StayFix</div>
-          <div className="text-[10px] font-medium tracking-wider uppercase" style={{ color: 'var(--text-muted)' }}>
-            Hostel Management
-          </div>
-        </div>
+      {/* StayFix Logo matching Home page */}
+      <Link to="/" className="flex items-center gap-2 group">
+        <span
+          className="material-symbols-outlined transition-transform group-hover:scale-105"
+          style={{
+            fontVariationSettings: "'FILL' 1",
+            fontSize: '28px',
+            color: 'var(--accent-primary)'
+          }}
+        >
+          foundation
+        </span>
+        <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+          StayFix
+        </span>
       </Link>
 
       {/* Right Side Controls */}

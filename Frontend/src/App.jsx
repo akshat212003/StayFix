@@ -6,6 +6,7 @@ import { Navbar } from './components/common/Navbar';
 import { Sidebar } from './components/common/Sidebar';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 
+import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { StudentDashboard } from './pages/StudentDashboard';
@@ -23,7 +24,7 @@ const AppLayout = () => {
       <Navbar />
       <div className="flex flex-1 overflow-hidden">
         {user && <Sidebar />}
-        <main className="flex-1 p-6 overflow-y-auto" style={{ backgroundColor: 'var(--bg-base)' }}>
+        <main className="flex-1 p-4 sm:p-6 overflow-y-auto" style={{ backgroundColor: 'var(--bg-base)' }}>
           <Routes>
             <Route path="/complaints/:id" element={<ComplaintDetails />} />
             <Route path="/profile" element={<Profile />} />
@@ -44,19 +45,8 @@ const AppLayout = () => {
               <Route path="/admin/users" element={<ManageUsers />} />
             </Route>
 
-            {/* Default Redirect */}
-            <Route
-              path="*"
-              element={
-                user ? (
-                  user.role === 'ROLE_ADMIN' ? <Navigate to="/admin/dashboard" replace /> :
-                  user.role === 'ROLE_STAFF' ? <Navigate to="/staff/dashboard" replace /> :
-                  <Navigate to="/student/dashboard" replace />
-                ) : (
-                  <Navigate to="/login" replace />
-                )
-              }
-            />
+            {/* Fallback to Home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
       </div>
@@ -70,8 +60,14 @@ export default function App() {
       <AuthProvider>
         <Router>
           <Routes>
+            {/* Landing / Home Page */}
+            <Route path="/" element={<Home />} />
+
+            {/* Auth Pages */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+
+            {/* Application Dashboard Routes */}
             <Route path="/*" element={<AppLayout />} />
           </Routes>
         </Router>

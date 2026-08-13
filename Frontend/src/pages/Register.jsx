@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { Wrench, UserPlus, Mail, KeyRound, User, Phone, Home, Building2, AlertCircle, CheckCircle2, Sun, Moon } from 'lucide-react';
+import { UserPlus, Mail, KeyRound, User, Phone, Home, Building2, AlertCircle, CheckCircle2, Sun, Moon } from 'lucide-react';
 
 const InputField = ({ label, hint, icon: Icon, ...props }) => (
   <div>
@@ -55,7 +55,7 @@ export const Register = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden font-sans"
       style={{ backgroundColor: 'var(--bg-base)', transition: 'background-color 0.3s ease' }}
     >
       {/* Ambient blobs */}
@@ -81,19 +81,25 @@ export const Register = () => {
           boxShadow: 'var(--shadow-lg)',
         }}
       >
-        {/* Header */}
+        {/* StayFix Logo matching Home page */}
         <div className="text-center mb-6">
-          <div
-            className="w-12 h-12 rounded-2xl btn-primary flex items-center justify-center mx-auto mb-4"
-            style={{ boxShadow: '0 8px 24px var(--accent-glow)' }}
-          >
-            <Wrench className="w-6 h-6 text-white" />
-          </div>
-          <h1 className="text-2xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-            Student Registration
-          </h1>
+          <Link to="/" className="inline-flex items-center gap-2 mb-2">
+            <span
+              className="material-symbols-outlined text-primary"
+              style={{
+                fontVariationSettings: "'FILL' 1",
+                fontSize: '32px',
+                color: 'var(--accent-primary)'
+              }}
+            >
+              foundation
+            </span>
+            <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+              StayFix
+            </span>
+          </Link>
           <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-            Create your StayFix student account
+            Student Account Registration
           </p>
         </div>
 

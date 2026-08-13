@@ -1,14 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, ClipboardList, Users, UserCheck } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, Users, UserCheck, Home } from 'lucide-react';
 
 export const Sidebar = () => {
   const { user } = useAuth();
   if (!user) return null;
 
   const role = user.role;
-  const navItems = [];
+  const navItems = [
+    { path: '/', label: 'Home Overview', icon: Home, end: true }
+  ];
 
   if (role === 'ROLE_STUDENT') {
     navItems.push(
@@ -45,6 +47,7 @@ export const Sidebar = () => {
           <NavLink
             key={item.path}
             to={item.path}
+            end={item.end}
             className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold text-sm transition-all group"
             style={({ isActive }) => ({
               background: isActive ? 'var(--accent-soft)' : 'transparent',
@@ -52,21 +55,9 @@ export const Sidebar = () => {
               border: isActive ? '1px solid var(--border-hover)' : '1px solid transparent',
               boxShadow: isActive ? '0 2px 8px var(--accent-glow)' : 'none',
             })}
-            onMouseEnter={e => {
-              if (!e.currentTarget.classList.contains('active')) {
-                e.currentTarget.style.background = 'var(--bg-surface-2)';
-                e.currentTarget.style.color = 'var(--text-primary)';
-              }
-            }}
-            onMouseLeave={e => {
-              if (!e.currentTarget.getAttribute('aria-current')) {
-                // reset handled by NavLink className
-              }
-            }}
           >
             <div
               className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all"
-              style={{}}
             >
               <Icon className="w-4 h-4" />
             </div>
